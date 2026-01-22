@@ -1,0 +1,177 @@
+:root {
+    --bg-gradient-1: #6a11cb;
+    --bg-gradient-2: #2575fc;
+    --glass-bg: rgba(255, 255, 255, 0.1);
+    --glass-border: rgba(255, 255, 255, 0.2);
+    --text-color: #ffffff;
+    --btn-bg: rgba(255, 255, 255, 0.05);
+    --btn-hover: rgba(255, 255, 255, 0.2);
+    --btn-operator: #ff9f43;
+    --btn-equals: #00d2d3;
+    --btn-secondary: #5f27cd;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Outfit', sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, var(--bg-gradient-1), var(--bg-gradient-2));
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: var(--text-color);
+    overflow: hidden;
+}
+
+.calculator-container {
+    position: relative;
+    z-index: 1;
+}
+
+/* Glassmorphism Effect */
+.calculator {
+    background: var(--glass-bg);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    border-radius: 20px;
+    box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+    padding: 20px;
+    width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.display {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: space-around;
+    height: 120px;
+    word-wrap: break-word;
+    word-break: break-all;
+    margin-bottom: 10px;
+}
+
+.previous-operand {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1rem;
+    min-height: 24px;
+}
+
+.current-operand {
+    color: white;
+    font-size: 2.5rem;
+    font-weight: 600;
+}
+
+.buttons-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.btn {
+    appearance: none;
+    border: none;
+    outline: none;
+    background: var(--btn-bg);
+    color: white;
+    font-size: 1.25rem;
+    font-weight: 400;
+    padding: 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    border: 1px solid transparent;
+}
+
+.btn:hover {
+    background: var(--btn-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.span-2 {
+    grid-column: span 2;
+}
+
+.operator {
+    background: rgba(255, 159, 67, 0.2);
+    color: var(--btn-operator);
+    font-weight: 600;
+}
+
+.operator:hover {
+    background: rgba(255, 159, 67, 0.4);
+}
+
+#equals {
+    background: rgba(0, 210, 211, 0.2);
+    color: var(--btn-equals);
+    font-weight: 600;
+    grid-column: span 2; /* Adjusting equals to be bigger if wanted, or stick to normal */
+    grid-column: 4; /* Sticking to normal grid placement */
+    background: var(--btn-equals);
+    color: #fff;
+    border-radius: 12px 12px 12px 0; /* Corner style just for fun */
+    border-radius: 12px;
+}
+
+#equals:hover {
+    background: #00e0e1;
+    box-shadow: 0 0 15px rgba(0, 210, 211, 0.5);
+}
+
+#delete, #clear {
+    background: rgba(95, 39, 205, 0.3);
+    color: #a29bfe;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+#delete:hover, #clear:hover {
+    background: rgba(95, 39, 205, 0.5);
+}
+
+/* Background blurred elements for depth */
+body::before, body::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    z-index: 0;
+}
+
+body::before {
+    background: #ff9f43;
+    width: 200px;
+    height: 200px;
+    top: 10%;
+    left: 20%;
+    filter: blur(80px);
+    opacity: 0.6;
+}
+
+body::after {
+    background: #00d2d3;
+    width: 250px;
+    height: 250px;
+    bottom: 10%;
+    right: 20%;
+    filter: blur(80px);
+    opacity: 0.5;
+}
